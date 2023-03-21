@@ -1,20 +1,21 @@
 {% extends "layouts/master.html" %}
 
 {% block title %}
-Product | Add
+Category | Add
 {% endblock title %}
 
 {% block content %}
 
 <div class="container">
-    <h1> This is product add page</h1>
+    <h1> Categories </h1>
     <hr>
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'product_index' %}">Products</a></li>
-            <li class="breadcrumb-item active">Add Product</li>
+            <li class="breadcrumb-item"><a href="{% url 'product_add' %}">Add Product</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'product_index' %}">Product</a></li>
+            <li class="breadcrumb-item active">Add Categories</li>
         </ol>
         </nav>
 
