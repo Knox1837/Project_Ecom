@@ -22,7 +22,8 @@ Category | Add
     <!-- Content -->
     <div class="col-3"></div>
         <div class="card p-5">
-            <form action="#">
+            <form action="{% url 'category_add' %}" method="post"><!-- POST method is more secure than GET method as it doesnt show the entered values
+                                                and POST method doesnt run without csrk token while GET method even works without it-->
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="ADD" class="btn btn-primary col-12">

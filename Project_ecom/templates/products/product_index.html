@@ -29,31 +29,22 @@ Product | Index
                 <th>Price</th>
                 <th>Category</th>
                 <th>Quantity</th>
-                <th>Action</th>
+                <th colspan="3">Action</th>
             </tr>                  
         </thead>
         <tbody>
+            {% for val in data %}
             <tr>
-                <td>1</td>
-                <td>Book</td>
-                <td>1000</td>
-                <td>Reading and Writing</td>
-                <td>50</td>
-                <td>View</td>
-                <td>Edit</td>
-                <td>Delete</td>
+                <td>{{ forloop.counter }}</td>    <!--the problem with just val.id is that upon deletion of<num> <num> will not appear when other item is added-->
+                <td>{{ val.title }}</td>
+                <td>{{ val.price }}</td>
+                <td>{{ val.category }}</td>
+                <td>{{ val.quantity}}</td>
+                <td><a href="{% url 'product_view' val.id %}">View</a></td>
+                <td><a href="{% url 'product_edit' val.id %}">Edit</a></td>
+                <td><a href="{% url 'product_delete' val.id %}">Delete</a></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Smartphone</td>
-                <td>100000</td>
-                <td>Electronics</td>
-                <td>5</td>
-                <td>View</td>
-                <td>Edit</td>
-                <td>Delete</td>
-            </tr>
-            
+            {% endfor %}
         </tbody>
     </table>
 </div>
