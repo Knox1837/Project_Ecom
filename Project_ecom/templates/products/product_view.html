@@ -6,6 +6,25 @@ Product | View
 
 {% block content %}
 <div class="container">
-    <h1> This is product view page</h1>
+    <h1> Product View </h1>
+    <hr>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'product_add' %}">Add Product</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'product_index' %}">Products</a></li>
+          <li class="breadcrumb-item active">Product Description</li>
+        </ol>
+      </nav>
+    
+    <div class="card p-5">
+        <h2>Title: {{data.title}}</h2>
+        <h6>Description: {{data.desc}}</h6>
+        <h6>Price: {{data.price}}</h6>
+        <h6>Category: {{data.category}}</h6>
+        <h6>Quantity: {{data.quantity}}</h6>
+        <h6>Discount % : {{data.discount}}</h6>
+        <h6>Cash On Delivery: {{data.cash_on_delivery}}</h6>
+    </div>
 </div>
 {% endblock content %}

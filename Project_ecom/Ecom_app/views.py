@@ -36,21 +36,38 @@ def product_index(request):
     context={'data': products}
     return render(request, "products/product_index.html", context)
 
-def product_edit(request, id):
-    product=Product.objects.get(id=id)
-    context={'data':product}
-    return render(request, "products/product_edit.html", context)
-
 def product_view(request, id):
     product=Product.objects.get(id=id)
-    context={'data':product}
+    context={'data':product}#for use in product_views.html {data.xxxx} can be used
     return render(request, "products/product_view.html", context)
+
+def product_edit(request, id):
+    product=Product.objects.get(id=id)
+    categories=Category.objects.all()
+    context={'data':product, 'categories':categories}
+    return render(request, "products/product_edit.html", context)
 
 def product_delete(request, id):
     product=Product.objects.get(id=id)
     product.delete()
     return redirect(product_index)
 
+def product_update(request):
+    if request.method=='POST':
+        category = Category.objects.get(id=request.POST.get('category'))
+        product=Product.objects.get(id=request.POST.get('id'))
+        user=User.objects.get(username='knox')
+        product.title=request.POST.get('title')
+        product.desc=request.POST.get('desc')
+        product.price=request.POST.get('price')
+        product.category = category
+        product.quantity=request.POST.get('quantity')
+        product.discount=request.POST.get('discount')
+        product.cash_on_delivery=request.POST.get('cash_on_delivery')
+        product.user=user
+        product.save()
+        return redirect(product_index)
+    return redirect(product_index)
 
 
 #categories

@@ -26,6 +26,7 @@ Product | Index
             <tr>
                 <th>S.NO</th>
                 <th>Name</th>
+                <th>Description</th>
                 <th>Price</th>
                 <th>Category</th>
                 <th>Quantity</th>
@@ -37,6 +38,7 @@ Product | Index
             <tr>
                 <td>{{ forloop.counter }}</td>    <!--the problem with just val.id is that upon deletion of<num> <num> will not appear when other item is added-->
                 <td>{{ val.title }}</td>
+                <td>{{ val.desc }}</td>
                 <td>{{ val.price }}</td>
                 <td>{{ val.category }}</td>
                 <td>{{ val.quantity}}</td>

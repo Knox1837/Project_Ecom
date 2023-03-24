@@ -6,6 +6,64 @@ Product | Edit
 
 {% block content %}
 <div class="container">
-    <h1> This is product edit page</h1>
+    <h1> Update Product </h1>
+    <hr>
+    <!-- Update Product -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'product_add' %}">Add Product</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'product_index' %}">Products</a></li>
+          <li class="breadcrumb-item active">Product Update </li>
+        </ol>
+      </nav>
+    
+    <div class="card p-5">
+        <form action="{% url 'product_update' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{data.id}}">
+            <div class="form-group mb-2">
+                <label for="title">Title</label>
+                <input type="text" name='title' value="{{data.title}}" class='form-control mt-2'>
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="desc">Description</label>
+                <input type="text" name='desc' value="{{data.desc}}" class='form-control mt-2'>
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="price">Price</label>
+                <input type="text" name='price' value="{{data.price}}" class='form-control mt-2'>
+            </div>
+            
+            <div class="form-group mb-2">
+                <label for="category">Category</label>
+                <select name="category" class='form-control'>
+                    {% for val in categories %}<!--  <categories> is the name given in views.py .product_edit  -->
+                    <option value="{{val.id}}">{{val.category_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+
+            <div class="form-group mb-2">
+                <label for="quantity">Quantity</label>
+                <input type="number" name='quantity' value="{{data.quantity}}" class='form-control mt-2'>
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="discount">Discount %</label>
+                <input type="number" name='discount' value="{{data.discount}}" class='form-control mt-2'>
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="cash_on_delivery">Cash On Delivery </label>
+                <input type="text" name='cash_on_delivery' value="{{data.cash_on_delivery}}" class='form-control mt-2'>
+            </div>
+
+            <input type="submit" class="btn btn-primary col-12" value="Update">
+        </form>
+    </div>
 </div>
 {% endblock content %}
