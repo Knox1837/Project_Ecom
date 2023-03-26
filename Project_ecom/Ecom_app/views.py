@@ -2,12 +2,16 @@ from django.shortcuts import render, redirect
 from .forms import ProductAddForm, CategoryAddForm
 from .models import Category, Product
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+# Function based view
 
+# Dashboard
+@login_required(login_url='/authentication/login/')
 def dashboard_index(request):
     return render(request, 'dashboard/dashboard.html')
 
-
 #Products
+@login_required(login_url='/authentication/login/')
 def product_add(request):
     add_product=ProductAddForm()
     context={"form":add_product}
@@ -31,27 +35,32 @@ def product_add(request):
 
     return render(request, "products/product_add.html", context)
 
+@login_required(login_url='/authentication/login/')
 def product_index(request):
     products= Product.objects.all()
     context={'data': products}
     return render(request, "products/product_index.html", context)
 
+@login_required(login_url='/authentication/login/')
 def product_view(request, id):
     product=Product.objects.get(id=id)
     context={'data':product}#for use in product_views.html {data.xxxx} can be used
     return render(request, "products/product_view.html", context)
 
+@login_required(login_url='/authentication/login/')
 def product_edit(request, id):
     product=Product.objects.get(id=id)
     categories=Category.objects.all()
     context={'data':product, 'categories':categories}
     return render(request, "products/product_edit.html", context)
 
+@login_required(login_url='/authentication/login/')
 def product_delete(request, id):
     product=Product.objects.get(id=id)
     product.delete()
     return redirect(product_index)
 
+@login_required(login_url='/authentication/login/')
 def product_update(request):
     if request.method=='POST':
         category = Category.objects.get(id=request.POST.get('category'))
@@ -71,6 +80,7 @@ def product_update(request):
 
 
 #categories
+@login_required(login_url='/authentication/login/')
 def category_add(request):
     add_category=CategoryAddForm()
     context={"form":add_category}
