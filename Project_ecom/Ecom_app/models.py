@@ -22,6 +22,8 @@ class Product(models.Model):
     cash_on_delivery = models.CharField(max_length=200)
     user= models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.title
     class Meta:
         db_table="app_products"
 

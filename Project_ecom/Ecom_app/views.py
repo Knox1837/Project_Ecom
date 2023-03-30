@@ -28,7 +28,7 @@ def product_add(request):
         product.discount=request.POST.get('discount')
         product.cash_on_delivery=request.POST.get('cash_on_delivery')
         product.category=category
-        product.user=user
+        product.user= request.user
         product.save()
         return redirect('product_index')
 
@@ -37,7 +37,8 @@ def product_add(request):
 
 @login_required(login_url='/authentication/login/')
 def product_index(request):
-    products= Product.objects.all()
+    #products=Product.objects.all() to allow access to all items
+    products= Product.objects.filter(user=request.user) #allows only the items added by the logged in user to be seen 
     context={'data': products}
     return render(request, "products/product_index.html", context)
 
@@ -73,7 +74,7 @@ def product_update(request):
         product.quantity=request.POST.get('quantity')
         product.discount=request.POST.get('discount')
         product.cash_on_delivery=request.POST.get('cash_on_delivery')
-        product.user=user
+        product.user = request.user
         product.save()
         return redirect(product_index)
     return redirect(product_index)

@@ -12,7 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from django.contrib import messages #for messages
 
+MESSAGE_tag={
+    messages.ERROR: 'danger'
+}
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,6 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin', #changes the design to premade jazzmin design https://django-jazzmin.readthedocs.io/
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

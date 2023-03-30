@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.contrib import auth
-from django.contrib.auth import login
+from django.contrib import auth, messages
+from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
 
 # Class based view
@@ -17,7 +17,9 @@ class LoginView(View):
         user = auth.authenticate(username=username, password=password)
         if user:
             login(request, user)
+            messages.success(request, "Login Sucessful!")
             return redirect('product_index')
+        
         return redirect('login')
 
 class RegistrationView(View):
@@ -31,4 +33,10 @@ class RegistrationView(View):
         password=request.POST.get('password')
 
         user=User.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username, password=password)
+        return redirect('login')
+    
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        messages.success(request, "Logout Sucessful!")
         return redirect('login')
