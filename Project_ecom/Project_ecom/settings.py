@@ -122,10 +122,22 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+STATIC_URL = '/static/'
+STATICFILES_DIRS=[os.path.join(BASE_DIR, 'static')]
 
-STATIC_URL = 'static/'
-
+# For media files and images
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
+MEDIA_URL='/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' # from >> https://docs.djangoproject.com/en/4.1/topics/email/#:~:text=SMTP%20backend%C2%B6,backends.smtp.EmailBackend%27
+
+# Email configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com' #email host
+EMAIL_HOST_USER = 'kaustuvm1837@gmail.com' 
+EMAIL_HOST_PASSWORD = 'wgdaalaiblvvoshl' # from >>2 step verification>> app password       gmail app password
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587 

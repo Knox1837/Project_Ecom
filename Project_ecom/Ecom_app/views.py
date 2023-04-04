@@ -27,6 +27,7 @@ def product_add(request):
         product.quantity=request.POST.get('quantity')
         product.discount=request.POST.get('discount')
         product.cash_on_delivery=request.POST.get('cash_on_delivery')
+        product.image=request.FILES.get('image') # To get files you need to write ****.FILES.get(***)
         product.category=category
         product.user= request.user
         product.save()
@@ -74,6 +75,7 @@ def product_update(request):
         product.quantity=request.POST.get('quantity')
         product.discount=request.POST.get('discount')
         product.cash_on_delivery=request.POST.get('cash_on_delivery')
+        product.image=request.FILES.get('image')
         product.user = request.user
         product.save()
         return redirect(product_index)

@@ -4,7 +4,13 @@
 Dashboard
 {% endblock %}
 
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"></link>
+{% endblock %}
+
 {% block content %}
+
 <div class="container">
 <h1> 
     DASHBOARD
@@ -37,6 +43,13 @@ Dashboard
         </div>
         
     </div>
+    <img src="{% static 'images/lumine.jpg' %}" width='1000' height="500"  alt="photo">
+    <div id="message">
+    </div>
 </div>
 
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}

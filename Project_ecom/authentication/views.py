@@ -3,9 +3,9 @@ from django.views import View
 from django.contrib import auth, messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 
 # Class based view
-
 
 class LoginView(View):
     def get(self, request):
@@ -33,6 +33,12 @@ class RegistrationView(View):
         password=request.POST.get('password')
 
         user=User.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username, password=password)
+        send_mail(
+            'Account Creation Sucessful!', # subject
+            'Thank you for registering.\n Username: '+ user.username +'\nName:'+user.first_name + "\n" + user.last_name+'\nEmail: '+ user.email, # body
+            'kaustuvm1837@gmail.com', # sender
+            [user.email] # receiver        -sent to(CC): written in a list
+        )
         return redirect('login')
     
 class LogoutView(View):

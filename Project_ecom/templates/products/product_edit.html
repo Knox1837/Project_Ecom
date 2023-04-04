@@ -4,6 +4,11 @@
 Product | Edit
 {% endblock title %}
 
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"></link>
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <h1> Update Product </h1>
@@ -19,7 +24,8 @@ Product | Edit
       </nav>
     
     <div class="card p-5">
-        <form action="{% url 'product_update' %}" method="POST">
+        <form action="{% url 'product_update' %}" method="POST" enctype="multipart/form-data"> <!-- this enctype allows you to upload files -->
+            <!-- Manual form creation -->
             {% csrf_token %}
             <input type="hidden" name="id" value="{{data.id}}">
             <div class="form-group mb-2">
@@ -58,10 +64,13 @@ Product | Edit
             </div>
 
             <div class="form-group mb-2">
-                <label for="cash_on_delivery">Cash On Delivery </label>
+                <label for="cash_on_delivery">Cash On Delivery</label>
                 <input type="text" name='cash_on_delivery' value="{{data.cash_on_delivery}}" class='form-control mt-2'>
             </div>
-
+            <div class="form-group mb-2">
+                <label for="image">Image</label>
+                <input type="file" name='image' value="{{data.image}}" class='form-control mt-2'>
+            </div>
             <input type="submit" class="btn btn-primary col-12" value="Update">
         </form>
     </div>
