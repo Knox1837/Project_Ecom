@@ -22,6 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("ecom/",include("Ecom_app.urls")),
     path("authentication/",include("authentication.urls")),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/v1/', include('restapi.urls')), # www.django-rest-framework.org/
 ]
 
 if settings.DEBUG:

@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "Ecom_app",
     'authentication',
+    'rest_framework',
+    'restapi',
 ]
 
 MIDDLEWARE = [

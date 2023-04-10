@@ -15,6 +15,7 @@ class LoginView(View):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = auth.authenticate(username=username, password=password)
+        print (user)
         if user:
             login(request, user)
             messages.success(request, "Login Sucessful!")
